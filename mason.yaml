@@ -1,0 +1,6 @@
+bricks:
+  kareem_brick:
+    git:
+      url: "https://github.com/Kareemm0/kareem_brick.git"
+      path: kareem_brick/
+      ref: main
