@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/core.dart' show CustomFilledButtonTheme;
-
 class CustomFilledButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget child;
@@ -32,11 +30,6 @@ class CustomFilledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final customTheme = switch (Theme.of(context).buttonTheme) {
-      final CustomFilledButtonTheme theme => theme,
-      _ => null,
-    };
-
     return FilledButton(
       onPressed: isLoading ? null : onPressed,
       style: style,
@@ -49,9 +42,7 @@ class CustomFilledButton extends StatelessWidget {
       statesController: statesController,
       child: Builder(builder: (context) {
         const loading = CircularProgressIndicator();
-        return isLoading
-            ? customTheme?.loadingBuilder?.call(context, loading) ?? loading
-            : child;
+        return isLoading ? loading : child;
       }),
     );
   }

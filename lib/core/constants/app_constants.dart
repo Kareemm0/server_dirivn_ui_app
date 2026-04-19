@@ -1,3 +1,3 @@
 abstract class AppConstants {
-  static const String defaultLangCode = "en";
+  static const String serverDrivenUiAssetPath = "lib/core/constants/data.json";
 }

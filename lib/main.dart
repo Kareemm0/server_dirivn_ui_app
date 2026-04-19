@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc_observer.dart';
 import 'injection_container.dart';
 import 'main_app.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = CustomBlocObserver();
-  initDependencies();
+  await initDependencies();
 
   runApp(const MainApp());
 }

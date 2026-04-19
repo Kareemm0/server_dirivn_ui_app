@@ -1,8 +1,12 @@
 import 'package:get_it/get_it.dart';
 
+import 'domain/domain.dart';
+import 'infrastructure/infrastructure.dart';
+import 'presentation/presentation.dart';
+
 final getIt = GetIt.instance;
 
-Future initDependencies() async {
+Future<void> initDependencies() async {
   await InjectionHelper.injectExternal();
   InjectionHelper.injectCore();
   InjectionHelper.injectDatasources();
@@ -15,9 +19,21 @@ abstract class InjectionHelper {
 
   static void injectCore() {}
 
-  static void injectDatasources() {}
+  static void injectDatasources() {
+    getIt.registerLazySingleton<ServerDrivenUiDataSource>(
+      ServerDrivenUiAssetDataSource.new,
+    );
+  }
 
-  static void injectRepos() {}
+  static void injectRepos() {
+    getIt.registerLazySingleton<ServerDrivenUiRepo>(
+      () => ServerDrivenUiRepoImpl(getIt()),
+    );
+  }
 
-  static void injectBlocs() {}
+  static void injectBlocs() {
+    getIt.registerFactory<ServerDrivenUiCubit>(
+      () => ServerDrivenUiCubit(getIt()),
+    );
+  }
 }
