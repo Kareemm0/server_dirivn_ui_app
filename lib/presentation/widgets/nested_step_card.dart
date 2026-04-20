@@ -30,10 +30,6 @@ class NestedStepCard extends StatelessWidget {
           ],
           if ((nestedStep.action ?? '').isNotEmpty) ...[
             const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Chip(label: Text('Action: ${nestedStep.action}')),
-            ),
           ],
           if ((nestedStep.additionalData ?? {}).isNotEmpty) ...[
             const SizedBox(height: 8),

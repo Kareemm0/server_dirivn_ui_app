@@ -11,32 +11,27 @@ class StepBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.black12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(step.label, style: Theme.of(context).textTheme.titleLarge),
-          if (step.description.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Text(step.description),
-          ],
-          const SizedBox(height: 20),
+    final hasNestedSteps = step.showNestedSteps && step.nestedSteps.isNotEmpty;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(step.label, style: Theme.of(context).textTheme.titleLarge),
+        if (step.description.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          Text(step.description),
+        ],
+        const SizedBox(height: 16),
+        if (hasNestedSteps)
           for (final nestedStep in step.nestedSteps) ...[
             NestedStepCard(nestedStep: nestedStep),
             const SizedBox(height: 16),
-          ],
+          ]
+        else
           for (final item in step.formData) ...[
             FormItemRenderer(item: item),
             const SizedBox(height: 16),
           ],
-        ],
-      ),
+      ],
     );
   }
 }

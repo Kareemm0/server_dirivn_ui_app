@@ -29,16 +29,16 @@ class ServerDrivenUiView extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(
-                  crossAxisAlignment: .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HeaderSection(definition: definition),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
                     if (definition.showSteps) ...[
                       StepSelector(
                         steps: definition.steps,
                         selectedIndex: selectedStepIndex,
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
                     ],
                     StepBody(step: definition.steps[selectedStepIndex]),
                   ],
