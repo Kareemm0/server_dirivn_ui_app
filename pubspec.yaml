@@ -40,3 +40,4 @@ flutter:
   uses-material-design: true
   assets:
     - lib/core/constants/data.json
+    - lib/core/constants/data_2.json
