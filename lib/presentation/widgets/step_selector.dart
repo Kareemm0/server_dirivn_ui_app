@@ -16,15 +16,19 @@ class StepSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 12,
-      children: List.generate(
-        steps.length,
-        (index) => ChoiceChip(
-          label: Text(steps[index].label),
-          selected: index == selectedIndex,
-          onSelected: (_) =>
-              context.read<ServerDrivenUiCubit>().selectStep(index),
+    return SizedBox(
+      width: double.infinity,
+      child: DefaultTabController(
+        key: ValueKey(selectedIndex),
+        length: steps.length,
+        initialIndex: selectedIndex,
+        child: TabBar(
+          indicatorSize: TabBarIndicatorSize.tab,
+          isScrollable: false,
+          onTap: (index) {
+            context.read<ServerDrivenUiCubit>().selectStep(index);
+          },
+          tabs: steps.map((e) => Tab(text: e.label)).toList(),
         ),
       ),
     );
