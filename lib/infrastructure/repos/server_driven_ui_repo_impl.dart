@@ -11,11 +11,15 @@ class ServerDrivenUiRepoImpl implements ServerDrivenUiRepo {
 
   @override
   FutureEitherFailureOr<ServerDrivenUi> getUiDefinition() async {
-    final result = await _dataSource.getUiDefinition();
+    try {
+      final result = await _dataSource.getUiDefinition();
 
-    return result.fold(
-      (failure) => Left(failure),
-      (definition) => Right(definition),
-    );
+      return result.fold(
+        (failure) => Left(failure),
+        (definition) => Right(definition),
+      );
+    } catch (e) {
+      return Left(DataMappingFailure(msg: e.toString()));
+    }
   }
 }

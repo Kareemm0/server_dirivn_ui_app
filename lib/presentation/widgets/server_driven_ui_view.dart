@@ -21,13 +21,15 @@ class ServerDrivenUiView extends StatelessWidget {
       appBar: AppBar(title: Text(definition.title), centerTitle: true),
       body: definition.steps.isEmpty
           ? const Center(
-              child: Text('No steps were provided in the server-driven UI schema.'),
+              child: Text(
+                'No steps were provided in the server-driven UI schema.',
+              ),
             )
           : SafeArea(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: .start,
                   children: [
                     HeaderSection(definition: definition),
                     const SizedBox(height: 24),
