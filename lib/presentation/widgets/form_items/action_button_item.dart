@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../domain/domain.dart';
 import '../../blocs.dart';
 
@@ -13,22 +11,19 @@ class ActionButtonItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (item.theme) {
-      'text' => Align(
-        alignment: Alignment.centerRight,
-        child: TextButton(
-          onPressed: () {
-            _handleAction(context);
-          },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(item.name ?? item.label ?? ''),
-              if (item.arrow == true) ...[
-                const SizedBox(width: 8),
-                const Icon(Icons.arrow_forward_rounded, size: 18),
-              ],
+      'text' => OutlinedButton(
+        onPressed: () {
+          _handleAction(context);
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(item.name ?? item.label ?? ''),
+            if (item.arrow == true) ...[
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_forward_rounded, size: 18),
             ],
-          ),
+          ],
         ),
       ),
       'outline' => OutlinedButton(
@@ -74,12 +69,11 @@ class ActionButtonItem extends StatelessWidget {
         }
         return;
       case 'navigate':
-        final link = item.link;
-        if (link != null && link.startsWith('/')) {
-          context.push(link);
-          return;
+        final cubit = context.read<ServerDrivenUiCubit>();
+        final currentState = cubit.state;
+        if (currentState is ServerDrivenUiLoaded) {
+          cubit.selectStep(currentState.selectedStepIndex - 1);
         }
-        _showMessage(context, 'Navigate: ${link ?? '-'}');
         return;
       case 'print':
         _showMessage(context, 'Print action is not connected yet.');

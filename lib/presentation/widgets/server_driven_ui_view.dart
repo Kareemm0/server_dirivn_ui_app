@@ -19,32 +19,24 @@ class ServerDrivenUiView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(definition.title), centerTitle: true),
-      body: definition.steps.isEmpty
-          ? const Center(
-              child: Text(
-                'No steps were provided in the server-driven UI schema.',
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HeaderSection(definition: definition),
+            const SizedBox(height: 16),
+            if (definition.showSteps) ...[
+              StepSelector(
+                steps: definition.steps,
+                selectedIndex: selectedStepIndex,
               ),
-            )
-          : SafeArea(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    HeaderSection(definition: definition),
-                    const SizedBox(height: 16),
-                    if (definition.showSteps) ...[
-                      StepSelector(
-                        steps: definition.steps,
-                        selectedIndex: selectedStepIndex,
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                    StepBody(step: definition.steps[selectedStepIndex]),
-                  ],
-                ),
-              ),
-            ),
+              const SizedBox(height: 16),
+            ],
+            StepBody(step: definition.steps[selectedStepIndex]),
+          ],
+        ),
+      ),
     );
   }
 }
