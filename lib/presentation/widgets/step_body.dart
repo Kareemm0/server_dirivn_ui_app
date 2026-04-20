@@ -15,7 +15,10 @@ class StepBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(step.label, style: Theme.of(context).textTheme.titleLarge),
+        Text(
+          step.label,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         if (step.description.isNotEmpty) ...[
           const SizedBox(height: 8),
           Text(step.description),

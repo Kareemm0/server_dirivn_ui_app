@@ -16,9 +16,8 @@ class StepSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
+    return Row(
       spacing: 12,
-      runSpacing: 12,
       children: List.generate(
         steps.length,
         (index) => ChoiceChip(

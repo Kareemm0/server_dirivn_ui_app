@@ -16,17 +16,13 @@ class DescriptionItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if ((item.stepTitle ?? '').isNotEmpty)
-            Text(
-              item.stepTitle!,
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-          if ((item.label ?? '').isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Text(item.label!, style: Theme.of(context).textTheme.titleMedium),
-          ],
+          Text(item.stepTitle!, style: Theme.of(context).textTheme.labelLarge),
+
+          const SizedBox(height: 8),
+          Text(item.label!, style: Theme.of(context).textTheme.titleMedium),
+
           if ((item.description ?? '').isNotEmpty) ...[
             const SizedBox(height: 8),
             Text(item.description!),

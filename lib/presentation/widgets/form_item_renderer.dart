@@ -4,7 +4,6 @@ import '../../domain/domain.dart';
 import 'form_items/action_button_item.dart';
 import 'form_items/container_item.dart';
 import 'form_items/description_item.dart';
-import 'form_items/fallback_item.dart';
 import 'form_items/feedback_item_view.dart';
 
 class FormItemRenderer extends StatelessWidget {
@@ -19,7 +18,7 @@ class FormItemRenderer extends StatelessWidget {
       'container' => ContainerItem(item: item),
       'feedback' => FeedbackItemView(item: item),
       'button' => ActionButtonItem(item: item),
-      _ => FallbackItem(item: item),
+      _ => SizedBox.shrink(),
     };
   }
 }

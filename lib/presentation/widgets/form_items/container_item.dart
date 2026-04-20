@@ -21,14 +21,7 @@ class ContainerItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if ((item.id ?? '').isNotEmpty || (item.layout ?? '').isNotEmpty)
-            Text(
-              [
-                if ((item.id ?? '').isNotEmpty) 'id: ${item.id}',
-                if ((item.layout ?? '').isNotEmpty) 'layout: ${item.layout}',
-              ].join(' • '),
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
+          Text("id: ${item.id} - layout: ${item.layout} "),
           if (childItems.isNotEmpty) ...[
             const SizedBox(height: 12),
             for (final child in childItems) ...[

@@ -12,18 +12,6 @@ class ActionButtonItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final label = item.name ?? item.label ?? 'تنفيذ';
-    final buttonChild = Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(label),
-        if (item.arrow == true) ...[
-          const SizedBox(width: 8),
-          const Icon(Icons.arrow_forward_rounded, size: 18),
-        ],
-      ],
-    );
-
     return switch (item.theme) {
       'text' => Align(
         alignment: Alignment.centerRight,
@@ -31,20 +19,47 @@ class ActionButtonItem extends StatelessWidget {
           onPressed: () {
             _handleAction(context);
           },
-          child: buttonChild,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(item.name ?? item.label ?? ''),
+              if (item.arrow == true) ...[
+                const SizedBox(width: 8),
+                const Icon(Icons.arrow_forward_rounded, size: 18),
+              ],
+            ],
+          ),
         ),
       ),
       'outline' => OutlinedButton(
         onPressed: () {
           _handleAction(context);
         },
-        child: buttonChild,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(item.name ?? item.label ?? ''),
+            if (item.arrow == true) ...[
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_forward_rounded, size: 18),
+            ],
+          ],
+        ),
       ),
       _ => FilledButton(
         onPressed: () {
           _handleAction(context);
         },
-        child: buttonChild,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(item.name ?? item.label ?? ''),
+            if (item.arrow == true) ...[
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_forward_rounded, size: 18),
+            ],
+          ],
+        ),
       ),
     };
   }

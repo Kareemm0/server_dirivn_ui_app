@@ -25,8 +25,7 @@ class FeedbackItemView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (title != null && title.isNotEmpty)
-            Text(title, style: Theme.of(context).textTheme.titleMedium),
+          Text(title ?? "", style: Theme.of(context).textTheme.titleMedium),
           if (item.items.isNotEmpty) ...[
             const SizedBox(height: 12),
             for (final feedbackItem in item.items) ...[
