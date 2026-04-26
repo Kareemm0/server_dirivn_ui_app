@@ -31,4 +31,24 @@ void main() {
       expect(() {}, throwsException);
     });
   });
+
+  test("Call Meothods tims ", () {
+    MockClient client = MockClient();
+    when(
+      client.get(Uri.parse("https://jsonplaceholder.typicode.com/posts/1")),
+    ).thenAnswer((_) async {
+      return http.Response('{"title": "foo"}', 200);
+    });
+
+    /// Moethod which test on()
+    verify(
+      client.get(Uri.parse("https://jsonplaceholder.typicode.com/posts/1")),
+    ).called(1);
+  });
+
+  /// Execute before each test
+  setUp(() {});
+
+  /// Execute after each test
+  tearDown(() {});
 }
